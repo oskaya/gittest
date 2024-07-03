@@ -20,6 +20,7 @@ jobs:
         run: echo "Deploying to ${{ github.event.inputs.environment }}"
   deploy-prod:
     runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.environment == 'production' }}
     environment:
       name: production
     steps:
