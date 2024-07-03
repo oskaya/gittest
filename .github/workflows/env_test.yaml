@@ -20,7 +20,7 @@ jobs:
       - name: Deploy to Environment
         run: |
           echo "Deploying to ${{ github.event.inputs.environment }}"
-          eecho ${{ env.AWS_KEY }}
+          echo ${{ env.AWS_KEY }}
   deploy-prod:
     runs-on: ubuntu-latest
     if: ${{ github.event.inputs.environment == 'production' }}
