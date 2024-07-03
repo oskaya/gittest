@@ -10,6 +10,7 @@ on:
 jobs:
   deploy-staging:
     runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.environment == 'staging' }}
     environment:
       name: ${{ github.event.inputs.environment }}
     steps:
@@ -17,7 +18,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Deploy to Environment
-        run: echo "Deploying to ${{ github.event.inputs.environment }}"
+        run: |
+          echo "Deploying to ${{ github.event.inputs.environment }}"
+          echo ${{ secrets.AWS_KEY }}
   deploy-prod:
     runs-on: ubuntu-latest
     if: ${{ github.event.inputs.environment == 'production' }}
@@ -28,4 +31,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Deploy to Environment
-        run: echo "Deploying to ${{ github.event.inputs.environment }}"
+        run: |
+          echo "Deploying to ${{ github.event.inputs.environment }}"
+            echo "Deploying to ${{ github.event.inputs.environment }}"
+            echo ${{ secrets.AWS_KEY }}
