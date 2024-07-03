@@ -1,0 +1,25 @@
+name: Actions Test
+on:
+  workflow_dispatch:
+    inputs:
+      CommandFile:
+        description: "File to use"
+        required: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract Environment
+        id: extract_env
+        run: |
+          ENV=$(echo "${{ github.event.inputs.CommandFile }}" | cut -d'/' -f2)
+          echo "Extracted environment: $ENV"
+          echo "::set-output name=env::$ENV"
+      - name: Configure AWS credentials
+        run: env
+        with:
+          aws-access-key-id: ${{ 
+            secrets['AWS_ACCESS_KEY_' + steps.extract_env.outputs.env] }}
+          aws-secret-access-key: ${{ 
+            secrets['AWS_SECRET_KEY_' + steps.extract_env.outputs.env] }}
+          aws-region: ${{ github.event.inputs.Region || 'us-east-1' }}
