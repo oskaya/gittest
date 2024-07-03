@@ -10,11 +10,11 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: ${{ github.event.inputs.environment }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Deploy to Environment
         run: echo "Deploying to ${{ github.event.inputs.environment }}"
-        environment:
-          name: ${{ github.event.inputs.environment || 'staging' }}
