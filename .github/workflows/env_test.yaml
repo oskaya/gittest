@@ -34,3 +34,13 @@ jobs:
         run: |
           echo "Deploying to ${{ github.event.inputs.environment }}"
           echo ${{ vars.AWS_KEY }}
+     
+      - name: Create an issue
+        uses: JasonEtco/create-an-issue@v2.6.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ENVIRONMENT: dev
+          RUNNUMBER: ${{ github.run_number }}
+          CLIENT_FILE: ${{ github.event.inputs.environment }}
+        with:
+          filename: .github/issue.md
