@@ -21,7 +21,7 @@ jobs:
   deploy-prod:
     runs-on: ubuntu-latest
     environment:
-      name: ${{ github.event.inputs.environment }}
+      name: production
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
