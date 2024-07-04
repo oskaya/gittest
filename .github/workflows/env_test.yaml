@@ -41,6 +41,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ENVIRONMENT: dev
           RUNNUMBER: ${{ github.run_number }}
-          CLIENT_FILE: ${{ github.event.inputs.environment }}
+          CLIENT_FILE: test
         with:
           filename: .github/issue.md

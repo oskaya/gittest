@@ -1,5 +1,18 @@
 ---
-title: Someone just pushed
-labels: bug, enhancement
+title: Deployment Approval Required for {{ env.ENVIRONMENT }}
+labels: deployment-requested
 ---
-Someone just pushed, oh no! Here's who did it: {{ payload.sender.login }}.
+
+Deployment Approval requested from {{ payload.sender.login }}.
+
+Comment "Approved" to kick the deployment off.
+
+=== DON'T CHANGE BELOW THIS LINE
+
+```json target_payload
+{
+    "runNumber":  "{{ env.RUNNUMBER }}",
+    "environment": "{{ env.ENVIRONMENT }}",
+    "client_file" : "{{ env.CLIENT_FILE }}"
+}
+```
